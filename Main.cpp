@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "header.h"
 #include <stdbool.h>
 
 // プログラムは WinMain から始まります
@@ -14,8 +15,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SetDrawScreen(DX_SCREEN_BACK);
     SetFullScreenScalingMode(DX_FSSCALINGMODE_NEAREST);
 
+    //エイトクイーンの算出
+    short board[BOARDSIZE][BOARDSIZE];
+    initBoard(board);
+    calcPattern(board, 0);
+
     bool softisEnd = false;
-    while (softisEnd&&ProcessMessage() != -1) {
+    while (!softisEnd&&ProcessMessage() != -1) {
+
+        draw(board);
 
         ScreenFlip();
         ClearDrawScreen();

@@ -155,7 +155,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="calcPattern.cpp" />
+    <ClCompile Include="draw.cpp" />
+    <ClCompile Include="drawBoard.cpp" />
+    <ClCompile Include="getPattern.cpp" />
+    <ClCompile Include="initBoard.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="setPattern.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header.h" />
+    <ClInclude Include="Pattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
