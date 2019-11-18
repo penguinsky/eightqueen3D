@@ -1,37 +1,38 @@
 #include"header.h"
+#include"Pattern.h"
+#include<stdlib.h>
 
-bool checkQueen(short(*board)[BOARDSIZE], int x, int y);
+#define SIZE 100	//一度に確保する容量(short[BOARDSIZE]単位)
+#define MAGNI_MAX 50	//確保する容量の最大値
+int memory_now = 0;
+short(*zipptr)[BOARDSIZE] = NULL;
 
-void calcPattern(short(*board)[BOARDSIZE], int y)
-{
-    for (int x = 0;x < BOARDSIZE;x++) {
-        if (checkQueen(board, x, y)) {
-            board[x][y] = 2;
-            if (y == BOARDSIZE - 1) {
-                setPattern(board);
-            } else {
-                calcPattern(board, y + 1);
-            }
-            board[x][y] = 0;
+bool setPattern(const short(*board)[BOARDSIZE]) {
+    static int size_magni;
+
+    if (memory_now >= SIZE * size_magni) {	//容量が足りてないなら
+        if (size_magni < MAGNI_MAX) {		//容量の既定の最大値を超えないなら
+            void* tmp;
+
+            int capacity = sizeof(short) * BOARDSIZE * SIZE * ++size_magni;
+            tmp = realloc((void*)zipptr, capacity);
+
+            if (tmp == NULL)	//realloc()が失敗したら
+                return false;
+            else
+                zipptr = (short(*)[BOARDSIZE])tmp;
+        } else {
+            return false;
         }
     }
-}
 
-bool checkQueen(short(*board)[BOARDSIZE], int x, int y) {
-    bool ret = true;
+    for (int x = 0; x < BOARDSIZE; x++)
+        for (int y = 0; x < BOARDSIZE; y++)
+            if (board[x][y] == QUEEN) {
+                zipptr[memory_now][y] = x;
+                break;
+            }
 
-    for (int i = 1;i <= y;i++) {
-        if (board[x][y - i] == 2)
-            ret = false;
-
-        if (x - i >= 0)
-            if (board[x - i][y - i] == 2)
-                ret = false;
-
-        if (x + i < BOARDSIZE)
-            if (board[x + i][y - i] == 2)
-                ret = false;
-    }
-
-    return ret;
+    memory_now++;
+    return true;
 }

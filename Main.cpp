@@ -28,6 +28,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ScreenFlip();
         ClearDrawScreen();
         WaitTimer(33);
+
+        WaitKey();
     }
 
     DxLib_End();				// ＤＸライブラリ使用の終了処理

@@ -1,7 +1,14 @@
 #pragma once
+#include "DxLib.h"
 #include<stdbool.h>
 
 #define BOARDSIZE 8//盤面のマス目の数
+
+enum squaresType {
+    NONE,
+    DOMINANT,
+    QUEEN
+};
 
 bool setPattern(const short(*board)[BOARDSIZE]);	//boardをパターンに圧縮して記録する
 bool getPattern(short(*board)[BOARDSIZE]);			//記録したパターンからboardを再現する

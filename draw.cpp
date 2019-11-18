@@ -3,8 +3,6 @@
 
 void draw(short(*board)[BOARDSIZE])
 {
-    while (getPattern(board) == true) {
-        drawBoard(board);
-        putchar('\n');
-    }
+    getPattern(board);
+    drawBoard(board);
 }
