@@ -20,16 +20,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     initBoard(board);
     calcPattern(board, 0);
 
-    bool softisEnd = false;
-    while (!softisEnd&&ProcessMessage() != -1) {
+    bool tonext = true;  
+    while (tonext&&ProcessMessage() != -1) {
 
-        draw(board);
+        tonext = draw(board); 
 
         ScreenFlip();
         ClearDrawScreen();
         WaitTimer(33);
-
-        WaitKey();
     }
 
     DxLib_End();				// ＤＸライブラリ使用の終了処理

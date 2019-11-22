@@ -161,6 +161,8 @@
     <ClCompile Include="getPattern.cpp" />
     <ClCompile Include="initBoard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mouse.cpp" />
+    <ClCompile Include="search.cpp" />
     <ClCompile Include="setPattern.cpp" />
   </ItemGroup>
   <ItemGroup>

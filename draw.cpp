@@ -1,8 +1,21 @@
 #include"header.h"
 #include<stdio.h>
 
-void draw(short(*board)[BOARDSIZE])
+bool draw(short(*board)[BOARDSIZE])
 {
-    getPattern(board);
+    static bool first = true;
+    static bool pressed = false;
+    if (first) {
+        first = false;
+        if (!getPattern(board))return false;
+    }else if (CheckHitKey(KEY_INPUT_SPACE)) {
+        if (!pressed) {
+            if (!getPattern(board))return false;
+            pressed = true;
+        }
+    } else {
+        pressed = false;
+    }
     drawBoard(board);
+    return true;
 }

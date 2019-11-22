@@ -4,9 +4,8 @@
 
 #define BOARDSIZE 8//”Õ–Ê‚Ìƒ}ƒX–Ú‚Ì”
 
-enum squaresType {
+enum squaresHave {
     NONE,
-    DOMINANT,
     QUEEN
 };
 
