@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="calcPattern.cpp" />
+    <ClCompile Include="changeBoardSize.cpp" />
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="drawBoard.cpp" />
     <ClCompile Include="getPattern.cpp" />
@@ -163,11 +164,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mouse.cpp" />
     <ClCompile Include="search.cpp" />
+    <ClCompile Include="setBoardSize.cpp" />
     <ClCompile Include="setPattern.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="general_macros.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="Pattern.h" />
+    <ClInclude Include="square.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

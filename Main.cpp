@@ -16,19 +16,35 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SetFullScreenScalingMode(DX_FSSCALINGMODE_NEAREST);
 
     //エイトクイーンの算出
-    short board[BOARDSIZE][BOARDSIZE];
-    initBoard(board);
-    calcPattern(board, 0);
+    short board[BOARD_MAXSIZE][BOARD_MAXSIZE];
+    setBoardSize(8);
+    calcPattern();
 
-    bool tonext = true;  
-    while (tonext&&ProcessMessage() != -1) {
+    int scene = -1;
+    bool tonext = true;
+    while (tonext && ProcessMessage() != -1) {
 
-        tonext = draw(board); 
+        switch(scene) {
+            case -1:
+                SetBackgroundColor(100, 100, 0);
+                controlBoardSize();
+                displayBoardSize();
+                searchMod();
+                displaySearch();
+                displayResult();
+                scene = controlResult();
+                break;
+            default:
+                SetBackgroundColor(0, 0, 0);
+                scene = draw(board, scene);
+        }
+
 
         ScreenFlip();
         ClearDrawScreen();
         WaitTimer(33);
     }
+    freePattern();
 
     DxLib_End();				// ＤＸライブラリ使用の終了処理
 

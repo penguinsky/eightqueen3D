@@ -1,18 +1,34 @@
 #include "header.h"
 #include "Pattern.h"
 
-bool getPattern(short(*board)[BOARDSIZE]) {
-    initBoard(board);
-
-    static int memory_view = 0;
-    int y;
-    if (memory_view >= memory_now) {
+bool patternFromNum(int num, short(*board)[BOARD_MAXSIZE]) {
+    if (!IN(0, num, memory_now - 1)) {
         return false;
     }
-    for (y = 0; y < BOARDSIZE; y++) {
-        int queen_pos = zipptr[memory_view][y];
+
+    initBoard(board);
+    for (int y = 0;y < board_size;y++) {
+        int queen_pos = zipptr[num][y];
         board[queen_pos][y] = QUEEN;
     }
-    memory_view++;
+
     return true;
+}
+
+bool checkExist(bool* exist, int num, int x, int y) {
+    if (!IN(0, num, memory_now - 1)) {
+        return false;
+    } else {
+        *exist = (zipptr[num][y] == x);
+        return true;
+    }
+}
+
+void writePattern(FILE* file) {
+    for (int num = 0;num < memory_now;num++) {
+        for (int y = 0;y < board_size;y++) {
+            fprintf(file, "%d,", zipptr[num][y]);
+        }
+        fprintf(file,"\n");
+    }
 }
